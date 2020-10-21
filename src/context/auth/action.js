@@ -33,13 +33,14 @@ const AuthState = props => {
     };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
+  const baseUrl = 'https://mysterious-chamber-97250.herokuapp.com'
 
   // Load User
   const loadUser = async () => {
     setAuthToken(localStorage.token);
 
     try {
-      const res = await axios.get('/api/auth');
+      const res = await axios.get(`${baseUrl}/api/auth`);
 
       dispatch({
         type: USER_LOADED,
@@ -59,7 +60,7 @@ const AuthState = props => {
     };
 
     try {
-      const res = await axios.post('/api/users', formData, config);
+      const res = await axios.post(`${baseUrl}/api/users`, formData, config);
 
       dispatch({
         type: REGISTER_SUCCESS,
@@ -84,7 +85,7 @@ const AuthState = props => {
     };
 
     try {
-      const res = await axios.post('/api/auth', formData, config);
+      const res = await axios.post(`${baseUrl}/api/auth`, formData, config);
 
       dispatch({
         type: LOGIN_SUCCESS,
@@ -108,7 +109,7 @@ const AuthState = props => {
       }
     };
     try {
-      const res = await axios.post('/api/resetPassword', formData, config);
+      const res = await axios.post(`${baseUrl}/api/resetPassword`, formData, config);
       dispatch({
         type: FORGET_PASSWORD_SUCCESS,
         payload: res.data,
@@ -128,7 +129,7 @@ const AuthState = props => {
       }
     };
     try {
-      const res = await axios.post(`/api/resetPassword/${formData.token}`, formData, config);
+      const res = await axios.post(`${baseUrl}/api/resetPassword/${formData.token}`, formData, config);
       dispatch({
         type: NEW_PASSWORD_SUCCESS,
         payload: res.data

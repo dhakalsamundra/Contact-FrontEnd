@@ -24,11 +24,13 @@ const ContactState = props => {
   };
 
   const [state, dispatch] = useReducer(contactReducer, initialState);
+  const baseUrl = 'https://mysterious-chamber-97250.herokuapp.com'
+
 
   // Get Contacts
   const getContacts = async () => {
     try {
-      const res = await axios.get('/api/contacts');
+      const res = await axios.get(`${baseUrl}/api/contacts`);
 
       dispatch({
         type: GET_CONTACTS,
@@ -51,7 +53,7 @@ const ContactState = props => {
     };
 
     try {
-      const res = await axios.post('/api/contacts', contact, config);
+      const res = await axios.post(`${baseUrl}/api/contacts`, contact, config);
 
       dispatch({
         type: ADD_CONTACT,
@@ -68,7 +70,7 @@ const ContactState = props => {
   // Delete Contact
   const deleteContact = async id => {
     try {
-      await axios.delete(`/api/contacts/${id}`);
+      await axios.delete(`${baseUrl}/api/contacts/${id}`);
 
       dispatch({
         type: DELETE_CONTACT,
@@ -92,7 +94,7 @@ const ContactState = props => {
 
     try {
       const res = await axios.put(
-        `/api/contacts/${contact._id}`,
+        `${baseUrl}/api/contacts/${contact._id}`,
         contact,
         config
       );

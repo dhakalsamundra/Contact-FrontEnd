@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import Navbar from './components/layout/Navbar';
 import Home from './components/pages/Home';
 import ResetLink from './components/pages/ResetLink';
@@ -13,6 +14,8 @@ import ContactState from './context/contact/action';
 import AuthState from './context/auth/action';
 import AlertState from './context/alert/action';
 import './App.css';
+
+
 
 const App = () => {
   return (
